@@ -17,8 +17,8 @@ public class CourseController {
   @Autowired
   public CourseService courseService;
 
-  @GetMapping("/getCourses")
-  public List<Course>  getCourses() {
-    return courseService.getCourses();
+  @GetMapping("/getCourseList")
+  public List<Course>  getCourseList() {
+    return courseService.getCourseList();
   }
 }
