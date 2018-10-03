@@ -15,6 +15,6 @@ public class CourseService{
     private CourseRepository courseRepository;
     
     public List<Course> getCourseList(){
-        return courseRepository.getCourseList();
+        return courseRepository.findAll();
     }
 }
