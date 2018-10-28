@@ -12,7 +12,7 @@ public class Course {
     private String course_name; 
     private int credit_hours;
     private String course_description;
-    private String speciality; 
+    private String concentration; 
 
     public Long getCourse_id() {
         return this.course_id;
@@ -30,8 +30,8 @@ public class Course {
         return this.course_description;
     }
 
-    public String getSpeciality() {
-        return this.speciality;
+    public String getConcentration() {
+        return this.concentration;
     }
 
     @Override
@@ -41,8 +41,7 @@ public class Course {
             ", course_name='" + getCourse_name() + "'" +
             ", credit_hours='" + getCredit_hours() + "'" +
             ", course_description='" + getCourse_description() + "'" +
-            ", speciality='" + getSpeciality() + "'" +
+            ", concentration='" + getConcentration() + "'" +
             "}";
     }
-
 }

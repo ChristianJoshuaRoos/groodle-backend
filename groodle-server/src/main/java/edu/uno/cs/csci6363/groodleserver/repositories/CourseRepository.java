@@ -10,5 +10,9 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("SELECT c.course_name FROM Course c")
     List<Course> getCourseList();
+
+    List<Course> findByCourseNameNotInAndConcentration(List<Course> courses, String concentration);
     
+    List<Course> findByConcentration(String concentration);
+
 }
