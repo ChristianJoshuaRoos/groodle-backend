@@ -60,6 +60,10 @@ public class CourseService{
 
         // breadth requirment calc
         for(String concentration : concentrations){
+            if(concentration.equals(student.getConcentration())){
+                continue;
+            }
+            ConcentrationRecommendation cR = new ConcentrationRecommendation();
             List<Course> taken =  Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(concentration)).collect(Collectors.toList());
             List<Course> canTake;
             if(taken.size() >= 1){
@@ -68,9 +72,9 @@ public class CourseService{
                 canTake = this.courseRepository.findByConcentration(concentration);
             }
 
-            cr.setConcentration(concentration);
-            cr.setRecommendedCourses(canTake.toArray(new Course[0]));
-            breadthRecommendations.add(cr);
+            cR.setConcentration(concentration);
+            cR.setRecommendedCourses(canTake.toArray(new Course[0]));
+            breadthRecommendations.add(cR);
         }
 
         recommendation.setBreadthRecommendations(breadthRecommendations.toArray(new ConcentrationRecommendation[0]));
