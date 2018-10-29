@@ -19,14 +19,10 @@ public class CourseService{
 
     @Autowired
     private CourseRepository courseRepository;
-
-    @Autowired
-    private ConcentrationRecommendation concentrationRecommendation;
     
     public List<Course> getCourseList(){
-        return courseRepository.findAll();
+        return courseRepository.getCourseList();
     }
-
 
     public Recommendation getRecommendedCourses(Student student){
 
@@ -42,7 +38,6 @@ public class CourseService{
            "Bioinformatics"
         };
         List<Course> depthCoursesTaken = Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());
-        // List<Course> breadthCoursesTaken = Stream.of(coursesTaken).filter(c -> !c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());
         List<Course> coursesNeeded;
         ArrayList<ConcentrationRecommendation> breadthRecommendations = new ArrayList<>();
 
@@ -56,7 +51,7 @@ public class CourseService{
         }else if(depthCoursesTaken.size() == 0){
             coursesNeeded = this.courseRepository.findByConcentration(student.getConcentration());
         }else{
-            coursesNeeded = this.courseRepository.findByCourseNameNotInAndConcentration(depthCoursesTaken, student.getConcentration());
+            coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(depthCoursesTaken, student.getConcentration());
         }
 
         cr.setConcentration(student.getConcentration());
