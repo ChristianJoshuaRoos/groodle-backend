@@ -12,7 +12,7 @@ public class Course {
     private String course_name; 
     private int credit_hours;
     private String course_description;
-    private String speciality; 
+    private String speciality;
 
     public Long getCourse_id() {
         return this.course_id;

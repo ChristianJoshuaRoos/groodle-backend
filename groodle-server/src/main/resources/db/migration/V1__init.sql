@@ -3,7 +3,7 @@ CREATE TABLE COURSE (
 	course_name varchar(255) not null,
     credit_hours INT not null,
     course_description varchar(1000) not null,
-     speciality varchar(30), --not null
+     speciality varchar(60) not null,
 );
 
 -- insert into COURSE (course_id, course_name, credit_hours, course_description, speciality) values (6363, 'Agile Software Engineering', 3,
