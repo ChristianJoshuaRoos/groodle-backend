@@ -39,4 +39,9 @@ public class Student{
     public void setCoursesTaken(Course[] coursesTaken) {
         this.coursesTaken = coursesTaken;
     }
+
+    public String toString()
+    {
+        return this.concentration + ", " + this.coursesTaken.toString();
+    }
 }

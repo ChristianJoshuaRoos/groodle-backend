@@ -13,9 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class CourseService{
+
+    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
     @Autowired
     private CourseRepository courseRepository;
@@ -26,7 +30,14 @@ public class CourseService{
 
     public Recommendation getRecommendedCourses(Student student){
 
+        logger.error(student.toString());
+
         Course[] coursesTaken = student.getCoursesTaken();
+        for (Course course : coursesTaken)
+        {
+            logger.error(course.toString());
+        }
+
         String[] concentrations = {
             "Theoretical Computer Science and Programming Languages", 
             "Systems and Networks", 
@@ -37,7 +48,11 @@ public class CourseService{
            "Artificial Intelligence",
            "Bioinformatics"
         };
-        List<Course> depthCoursesTaken = Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());
+        //Changed List<Courses> to List<String>.
+        List<String> depthCoursesTaken = Stream.of(coursesTaken)
+            .filter(c -> c.getConcentration().equals(student.getConcentration()))
+            .map(Course::getCourseTitle)
+            .collect(Collectors.toList());
         List<Course> coursesNeeded;
         ArrayList<ConcentrationRecommendation> breadthRecommendations = new ArrayList<>();
 
