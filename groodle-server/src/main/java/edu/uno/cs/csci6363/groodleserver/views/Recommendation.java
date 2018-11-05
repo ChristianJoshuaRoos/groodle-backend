@@ -3,15 +3,15 @@ package edu.uno.cs.csci6363.groodleserver.views;
 import edu.uno.cs.csci6363.groodleserver.views.ConcentrationRecommendation;;
 
 public class Recommendation{
-    private ConcentrationRecommendation depthRecommendation;
+    private ConcentrationRecommendation depthRecommendations;
     private ConcentrationRecommendation[] breadthRecommendations;
 
-    public ConcentrationRecommendation getDepthRecommendation() {
-        return this.depthRecommendation;
+    public ConcentrationRecommendation getDepthRecommendations() {
+        return this.depthRecommendations;
     }
 
-    public void setDepthRecommendation(ConcentrationRecommendation depthRecommendation) {
-        this.depthRecommendation = depthRecommendation;
+    public void setDepthRecommendations(ConcentrationRecommendation depthRecommendations) {
+        this.depthRecommendations = depthRecommendations;
     }
 
     public ConcentrationRecommendation[] getBreadthRecommendations() {
@@ -21,5 +21,7 @@ public class Recommendation{
     public void setBreadthRecommendations(ConcentrationRecommendation[] breadthRecommendations) {
         this.breadthRecommendations = breadthRecommendations;
     }
+
+    
    
 }

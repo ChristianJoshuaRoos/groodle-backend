@@ -27,6 +27,7 @@ public class CourseService{
     public Recommendation getRecommendedCourses(Student student){
 
         Course[] coursesTaken = student.getCoursesTaken();
+
         String[] concentrations = {
             "Theoretical Computer Science and Programming Languages", 
             "Systems and Networks", 
@@ -37,29 +38,36 @@ public class CourseService{
            "Artificial Intelligence",
            "Bioinformatics"
         };
+
         List<Course> depthCoursesTaken = Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());
+        
         List<Course> coursesNeeded;
+
         ArrayList<ConcentrationRecommendation> breadthRecommendations = new ArrayList<>();
 
         ConcentrationRecommendation cr = new ConcentrationRecommendation();
 
         Recommendation recommendation = new Recommendation();
-        
+
         // depth requirements calc
         if(depthCoursesTaken.size() >= 3){
             coursesNeeded = null;
         }else if(depthCoursesTaken.size() == 0){
             coursesNeeded = this.courseRepository.findByConcentration(student.getConcentration());
         }else{
-            coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(depthCoursesTaken, student.getConcentration());
+            List<String> courseTitles = new ArrayList<>();
+            for(Course course : depthCoursesTaken){
+                courseTitles.add(course.getCourseTitle());
+            }
+            coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(courseTitles, student.getConcentration());
         }
-
         cr.setConcentration(student.getConcentration());
         cr.setRecommendedCourses(coursesNeeded.toArray(new Course[0]));
-        recommendation.setDepthRecommendation(cr);
+        recommendation.setDepthRecommendations(cr);
 
         // breadth requirment calc
         for(String concentration : concentrations){
+            // skip the the depth concentration
             if(concentration.equals(student.getConcentration())){
                 continue;
             }
