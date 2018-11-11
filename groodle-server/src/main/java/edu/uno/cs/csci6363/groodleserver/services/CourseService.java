@@ -31,12 +31,11 @@ public class CourseService{
         String[] concentrations = {
             "Theoretical Computer Science and Programming Languages", 
             "Systems and Networks", 
-           "Information Assurance",
-           "Software Systems",
-           "Database Systems and Distributed Applications",
-           "Computer Graphics and Visual Computing",
-           "Artificial Intelligence",
-           "Bioinformatics"
+            "Information Assurance",
+            "Software Systems",
+            "Database Systems and Distributed Applications",
+            "Computer Graphics and Visual Computing",
+            "Artificial Intelligence",
         };
 
         List<Course> depthCoursesTaken = Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());

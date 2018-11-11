@@ -8,19 +8,11 @@ import javax.persistence.Id;
 public class Course {
 
     @Id
-<<<<<<< HEAD
     private Long courseId;
     private String courseTitle; 
     private int creditHours;
-    private String courseDescription;
     private String concentration; 
-=======
-    private Long course_id;
-    private String course_name; 
-    private int credit_hours;
-    private String course_description;
-    private String speciality;
->>>>>>> master
+    private String courseDescription;
 
     public Long getCourseId() {
         return this.courseId;
@@ -46,14 +38,6 @@ public class Course {
         this.creditHours = creditHours;
     }
 
-    public String getCourseDescription() {
-        return this.courseDescription;
-    }
-
-    public void setCourseDescription(String courseDescription) {
-        this.courseDescription = courseDescription;
-    }
-
     public String getConcentration() {
         return this.concentration;
     }
@@ -62,16 +46,23 @@ public class Course {
         this.concentration = concentration;
     }
 
+    public String getCourseDescription() {
+        return this.courseDescription;
+    }
+
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
+
     @Override
     public String toString() {
         return "{" +
             " courseId='" + getCourseId() + "'" +
             ", courseTitle='" + getCourseTitle() + "'" +
             ", creditHours='" + getCreditHours() + "'" +
-            ", courseDescription='" + getCourseDescription() + "'" +
             ", concentration='" + getConcentration() + "'" +
+            ", courseDescription='" + getCourseDescription() + "'" +
             "}";
     }
 
-    
 }
