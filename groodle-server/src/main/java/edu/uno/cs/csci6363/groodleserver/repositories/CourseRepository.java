@@ -8,7 +8,7 @@ import edu.uno.cs.csci6363.groodleserver.entities.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    @Query("SELECT c.courseTitle FROM Course c")
+    @Query("SELECT c FROM Course c")
     List<Course> getCourseList();
 
     List<Course> findByCourseTitleNotInAndConcentration(List<String> courseTitles, String concentration);

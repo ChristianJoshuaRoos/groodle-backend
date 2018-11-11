@@ -13,9 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class CourseService{
+
+    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
     @Autowired
     private CourseRepository courseRepository;
@@ -38,8 +42,11 @@ public class CourseService{
             "Artificial Intelligence",
         };
 
-        List<Course> depthCoursesTaken = Stream.of(coursesTaken).filter(c -> c.getConcentration().equals(student.getConcentration())).collect(Collectors.toList());
-        
+        List<String> depthCoursesTaken = Stream.of(coursesTaken)
+            .filter(c -> c.getConcentration().equals(student.getConcentration()))
+            .map(Course::getCourseTitle)
+            .collect(Collectors.toList());
+            
         List<Course> coursesNeeded;
 
         ArrayList<ConcentrationRecommendation> breadthRecommendations = new ArrayList<>();
@@ -54,11 +61,7 @@ public class CourseService{
         }else if(depthCoursesTaken.size() == 0){
             coursesNeeded = this.courseRepository.findByConcentration(student.getConcentration());
         }else{
-            List<String> courseTitles = new ArrayList<>();
-            for(Course course : depthCoursesTaken){
-                courseTitles.add(course.getCourseTitle());
-            }
-            coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(courseTitles, student.getConcentration());
+            coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(depthCoursesTaken, student.getConcentration());
         }
         cr.setConcentration(student.getConcentration());
         cr.setRecommendedCourses(coursesNeeded.toArray(new Course[0]));
