@@ -8,11 +8,19 @@ import javax.persistence.Id;
 public class Course {
 
     @Id
+<<<<<<< HEAD
     private Long courseId;
     private String courseTitle; 
     private int creditHours;
     private String courseDescription;
     private String concentration; 
+=======
+    private Long course_id;
+    private String course_name; 
+    private int credit_hours;
+    private String course_description;
+    private String speciality;
+>>>>>>> master
 
     public Long getCourseId() {
         return this.courseId;
