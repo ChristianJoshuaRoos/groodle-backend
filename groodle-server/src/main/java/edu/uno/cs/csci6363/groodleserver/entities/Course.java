@@ -8,40 +8,60 @@ import javax.persistence.Id;
 public class Course {
 
     @Id
-    private Long course_id;
-    private String course_name; 
-    private int credit_hours;
-    private String course_description;
-    private String speciality;
+    private Long courseId;
+    private String courseTitle; 
+    private int creditHours;
+    private String concentration; 
+    private String courseDescription;
 
-    public Long getCourse_id() {
-        return this.course_id;
+    public Long getCourseId() {
+        return this.courseId;
     }
 
-    public String getCourse_name() {
-        return this.course_name;
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
-    public int getCredit_hours() {
-        return this.credit_hours;
+    public String getCourseTitle() {
+        return this.courseTitle;
     }
 
-    public String getCourse_description() {
-        return this.course_description;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
-    public String getSpeciality() {
-        return this.speciality;
+    public int getCreditHours() {
+        return this.creditHours;
+    }
+
+    public void setCreditHours(int creditHours) {
+        this.creditHours = creditHours;
+    }
+
+    public String getConcentration() {
+        return this.concentration;
+    }
+
+    public void setConcentration(String concentration) {
+        this.concentration = concentration;
+    }
+
+    public String getCourseDescription() {
+        return this.courseDescription;
+    }
+
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
     }
 
     @Override
     public String toString() {
         return "{" +
-            " course_id='" + getCourse_id() + "'" +
-            ", course_name='" + getCourse_name() + "'" +
-            ", credit_hours='" + getCredit_hours() + "'" +
-            ", course_description='" + getCourse_description() + "'" +
-            ", speciality='" + getSpeciality() + "'" +
+            " courseId='" + getCourseId() + "'" +
+            ", courseTitle='" + getCourseTitle() + "'" +
+            ", creditHours='" + getCreditHours() + "'" +
+            ", concentration='" + getConcentration() + "'" +
+            ", courseDescription='" + getCourseDescription() + "'" +
             "}";
     }
 

@@ -1,9 +1,9 @@
 CREATE TABLE COURSE (
-	course_id BIGINT not null,
-	course_name varchar(255) not null,
-    credit_hours INT not null,
-    course_description varchar(1000) not null,
-     speciality varchar(60) not null,
+	courseId BIGINT not null,
+	courseTitle varchar(255) not null,
+    creditHours INT not null,
+    concentration varchar(100) not null,
+    courseDescription varchar(1000) not null,
 );
 
 -- insert into COURSE (course_id, course_name, credit_hours, course_description, speciality) values (6363, 'Agile Software Engineering', 3,
