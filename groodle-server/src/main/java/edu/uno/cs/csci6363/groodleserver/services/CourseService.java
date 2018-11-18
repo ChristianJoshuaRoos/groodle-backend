@@ -63,8 +63,14 @@ public class CourseService{
         }else{
             coursesNeeded = this.courseRepository.findByCourseTitleNotInAndConcentration(depthCoursesTaken, student.getConcentration());
         }
+
         cr.setConcentration(student.getConcentration());
-        cr.setRecommendedCourses(coursesNeeded.toArray(new Course[0]));
+
+        if(coursesNeeded == null)
+            cr.setRecommendedCourses(null);
+        else
+            cr.setRecommendedCourses(coursesNeeded.toArray(new Course[0]));
+
         recommendation.setDepthRecommendations(cr);
 
         // breadth requirment calc
@@ -83,7 +89,12 @@ public class CourseService{
             }
 
             cR.setConcentration(concentration);
-            cR.setRecommendedCourses(canTake.toArray(new Course[0]));
+            
+            if(canTake == null)
+                cR.setRecommendedCourses(null);
+            else
+                cR.setRecommendedCourses(canTake.toArray(new Course[0]));
+            
             breadthRecommendations.add(cR);
         }
 
